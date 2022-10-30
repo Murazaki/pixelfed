@@ -66,7 +66,7 @@ services:
       - "db-data:/var/lib/mysql"
 
   redis:
-    image: redis:5-alpine
+    image: redis:6-alpine
     restart: unless-stopped
     env_file:
       - .env.docker
