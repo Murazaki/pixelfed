@@ -1,0 +1,25 @@
+name: Sync From Upstream
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+
+jobs:
+  sync_from_upstream:
+    runs-on: ubuntu-latest
+    name: Sync latest commits from upstream repo
+
+    steps:
+    - name: Checkout target repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 100
+
+    - name: Sync upstream changes
+      id: sync
+      uses: imba-tjd/rebase-upstream-action@0.5
+      with:
+        branch: ${{ inputs.branch }}

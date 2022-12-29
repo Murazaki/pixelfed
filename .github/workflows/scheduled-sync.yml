@@ -1,0 +1,15 @@
+name: Scheduled Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  scheduled-sync:
+    strategy:
+      matrix:
+        branches: [dev, staging]
+    uses: ./.github/workflows/sync-from-upstream.yml
+    with:
+      branch: ${{ matrix.branches }}
