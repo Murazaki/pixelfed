@@ -13,3 +13,8 @@ jobs:
     uses: ./.github/workflows/sync-from-upstream.yml
     with:
       branch: ${{ matrix.branches }}
+
+  build:
+    if: success() || failure()
+    needs: scheduled-sync
+    uses: ./.github/workflows/build-docker.yml
