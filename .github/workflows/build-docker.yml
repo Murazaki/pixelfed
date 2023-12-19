@@ -31,7 +31,7 @@ jobs:
       - name: Docker Lint
         uses: hadolint/hadolint-action@v3.0.0
         with:
-          dockerfile: contrib/docker/Dockerfile.${{ matrix.flavors }}
+          dockerfile: contrib/docker/Dockerfile
           failure-threshold: error
 
       - name: Set up QEMU
@@ -66,7 +66,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: contrib/docker/Dockerfile.${{ matrix.flavors }}
+          file: contrib/docker/Dockerfile
+          build-args: |
+            PROCESS_ARG=${{ matrix.flavors }}
           platforms: linux/amd64,linux/arm64
           builder: ${{ steps.buildx.outputs.name }}
           push: ${{ github.event_name != 'pull_request' }}
