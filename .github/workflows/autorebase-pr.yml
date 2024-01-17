@@ -14,8 +14,8 @@ jobs:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'pull_request' &&
-       (contains(github.event.issue.labels.*.name, 'autorebase') ||
-        contains(github.event.issue.labels.*.name, 'autosquash'))) ||
+       (contains(github.event.pull_request.labels.*.name, 'autorebase') ||
+        contains(github.event.pull_request.labels.*.name, 'autosquash'))) ||
       (github.event_name == 'issue_comment' &&
        github.event.issue.pull_request != '' &&
        (contains(github.event.comment.body, '/rebase') ||
@@ -30,7 +30,7 @@ jobs:
         uses: cirrus-actions/rebase@1.8
         with:
           autosquash: ${{ (github.event_name == 'pull_request' &&
-                           contains(github.event.issue.labels.*.name, 'autosquash')) ||
+                           contains(github.event.pull_request.labels.*.name, 'autosquash')) ||
                           (github.event_name == 'issue_comment' &&
                            (contains(github.event.comment.body, '/autosquash') ||
                             contains(github.event.comment.body, '/rebase-autosquash'))) }}
