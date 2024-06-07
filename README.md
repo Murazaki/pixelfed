@@ -1,3 +1,5 @@
+# /!\ This repo is no longer maintained. For more updates on Dockerized Pixelfed and more, go to https://github.com/pixelfed-glitch/pixelfed/ /!\
+
 <p align="center"><img src="https://pixelfed.nyc3.cdn.digitaloceanspaces.com/logos/pixelfed-full-color.svg" width="300px"></p>
 
 <p align="center">
